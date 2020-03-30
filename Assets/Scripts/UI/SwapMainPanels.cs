@@ -9,18 +9,18 @@ public class SwapMainPanels : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     // Start is called before the first frame update
     private Vector2 startPos;
     [SerializeField] private float lerpSpeed = 1f;
-    private bool directionChosen;    
+    private bool directionChosen;
     [SerializeField] float choosenScreenX = 0f;
-    [SerializeField] float deltaX = 5.6f;
+    [SerializeField] const float deltaX = 5.625f;
     [SerializeField] private Text textX;
     [SerializeField] private Text textXScreen;
-    private int activeScreen;
+    [SerializeField] private int activeScreen;
     private Vector2 touchPos;
     private bool freezeSwap;
     public bool FreezeSwap { set { freezeSwap = value; } }
     void Start()
     {
-        activeScreen = 2;
+        activeScreen = 0;
         directionChosen = true;
         Screen.orientation = ScreenOrientation.Portrait;
     }
@@ -36,6 +36,7 @@ public class SwapMainPanels : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
         }
         textX.text = "X: " + transform.position.x;
         textXScreen.text = "ActiveScr: " + choosenScreenX.ToString();
+        Debug.Log(choosenScreenX);
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -64,15 +65,16 @@ public class SwapMainPanels : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
             if (Mathf.Abs(touchPos.x) > Mathf.Abs(touchPos.y))
             {
                 ActivateDeactivateSwapUpDown(false);
-                if ((choosenScreenX - transform.position.x) > 1f && activeScreen < 4)
+
+                if ((choosenScreenX - transform.position.x) > 1f && activeScreen < 2)
                 {
-                    choosenScreenX -= deltaX;
                     activeScreen++;
+                    choosenScreenX = deltaX * activeScreen * -1;
                 }
-                else if ((choosenScreenX - transform.position.x) < 1f && activeScreen > 0)
+                else if ((choosenScreenX - transform.position.x) < 1f && activeScreen > -2)
                 {
-                    choosenScreenX += deltaX;
                     activeScreen--;
+                    choosenScreenX = deltaX * activeScreen * -1;
                 }
                 ActivateDeactivateSwapUpDown(true);
             }
@@ -81,7 +83,7 @@ public class SwapMainPanels : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     }
     private void ActivateDeactivateSwapUpDown(bool enabled)
     {
-        SwapUpDown activeScreenSwapping = transform.GetChild(activeScreen).GetComponent<SwapUpDown>();
+        SwapUpDown activeScreenSwapping = transform.GetChild(activeScreen + 2).GetComponent<SwapUpDown>();
         if (activeScreenSwapping != null)
         {
             StopCoroutine(activeScreenSwapping.BackY());
@@ -96,16 +98,17 @@ public class SwapMainPanels : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     {
         transform.position = new Vector3(Mathf.Lerp(transform.position.x, choosenScreenX, lerpSpeed * 3 * Time.deltaTime), transform.position.y, transform.position.z);
     }
-    public void ButtonChosenScreen(float screenNumber)
+    public void ButtonChosenScreen(int screenNumber)
     {
-        if (activeScreen != screenNumber && screenNumber >= 0 && screenNumber <= 4)
+        if (activeScreen != screenNumber && screenNumber >= -2 && screenNumber < 3)
         {
             ActivateDeactivateSwapUpDown(false);
-            choosenScreenX = screenNumber;
-            freezeSwap = false;
-            choosenScreenX = screenNumber;
+            activeScreen = screenNumber;
+            choosenScreenX = deltaX * activeScreen * -1;
+            freezeSwap = false;            
             ActivateDeactivateSwapUpDown(true);
         }
     }
 
 }
+
