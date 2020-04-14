@@ -12,7 +12,7 @@ public class SwapMainPanels : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     private bool directionChosen;
     [SerializeField] float choosenScreenX = 0f;
     [SerializeField] const float deltaX = 5.625f;
-    [SerializeField] private Text textX;
+    //[SerializeField] private Text textX;
     [SerializeField] private Text textXScreen;
     [SerializeField] private int activeScreen;
     private Vector2 touchPos;
@@ -34,7 +34,7 @@ public class SwapMainPanels : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
         {
             ScreenChosen();
         }
-        textX.text = "X: " + transform.position.x;
+        //textX.text = "X: " + transform.position.x;
         textXScreen.text = "ActiveScr: " + choosenScreenX.ToString();
         //Debug.Log(choosenScreenX);
     }
