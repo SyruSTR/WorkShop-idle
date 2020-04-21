@@ -55,7 +55,7 @@ public class UnitGrindController : MonoBehaviour
     private IEnumerator StartStopWorking()
     {
         SetResourcesCount(2);
-        
+        _workerAnim.SetSpeedAnimation(_animationSpeed);
         _workerAnim.SetAnimVarible(AnimVarible.AnimatorVarible.animBool, "startWork", true);
         yield return new WaitForSeconds(speedTranzition);
         if (_boost)
