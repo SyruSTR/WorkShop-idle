@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\SQLite\SQLiteAndroid.cs" />
     <Compile Include="Assets\Scripts\SQLite\SQLiteBD.cs" />
     <Compile Include="Assets\Scripts\UI\ControllerGeneralPanels.cs" />
+    <Compile Include="Assets\Scripts\UI\HudStats\GetStats.cs" />
     <Compile Include="Assets\Scripts\UI\MovementPanel.cs" />
     <Compile Include="Assets\Scripts\UI\SwapMainPanels.cs" />
     <Compile Include="Assets\Scripts\UI\SwapUpDown.cs" />

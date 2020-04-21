@@ -11,10 +11,10 @@ public class TestQuery : MonoBehaviour
     }
     public void TestSelect()
     {
-        DataTable test = SQLiteBD.GetTable("SELECT itemId, itemCount, nameItem, ItemsType.name FROM Items " +
+        DataTable test = SQLiteBD.GetTable("SELECT itemId, nameItem, ItemsType.name FROM Items " +
             "INNER JOIN ItemsType ON Items.itemType = ItemsType.idItemsType;");
 
-        int idCountFirstItem = int.Parse(test.Rows[0][1].ToString());
+        //int idCountFirstItem = int.Parse(test.Rows[0][1].ToString());
         for (int i = 0; i < test.Rows.Count; i++)
         {
             string gg = "";

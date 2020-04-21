@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class AllChoppersController : MonoBehaviour
 {
+    [SerializeField] int itemResourceId;
     [SerializeField] Text generalResources;
     [SerializeField] TextMeshProUGUI counterResources;
     private int allgrindresources;
@@ -28,12 +29,8 @@ public class AllChoppersController : MonoBehaviour
     private IEnumerator UpdateCountResources()
     {
         yield return new WaitForSeconds(1f);
-        generalResources.text = (Convert.ToInt32(generalResources.text) + allgrindresources).ToString();        
+        SQLiteBD.ExecuteQueryWithoutAnswer($"UPDATE PlayersItems SET itemCount = {Convert.ToInt32(generalResources.text) + allgrindresources} WHERE playerId = 1 AND itemId = {itemResourceId}");
+        //generalResources.text = (Convert.ToInt32(generalResources.text) + allgrindresources).ToString();        
         StartCoroutine(UpdateCountResources());
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
