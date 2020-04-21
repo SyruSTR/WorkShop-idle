@@ -22,10 +22,10 @@ public class ControllerGeneralPanels : MonoBehaviour
         cashActivePanel.Show();
     }
     public void HideActivePanel()
-    {
+    {        
         if (cashActivePanel != null)
         {
-            cashActivePanel.transform.position = new Vector2(Screen.width / 2, Screen.height / 2 * -1);
+            cashActivePanel.transform.position = new Vector2(0.0f,-10.0f);
             cashActivePanel.Hide();
             cashActivePanel = null;
             _activePanel = Panels.None;

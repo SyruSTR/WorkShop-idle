@@ -6,6 +6,7 @@ public class MovementPanel : MonoBehaviour
 {
     [SerializeField] float lerpSpeed;
     [SerializeField] bool show;
+    [SerializeField] float pointY;
 
     public void Show()
     {
@@ -19,13 +20,13 @@ public class MovementPanel : MonoBehaviour
     private void Update()
     {
         if (show)
-            if (transform.position.y < Screen.height / 2)
+            if (transform.position.y < pointY)
                 ShowPanel();
     }
 
 
     private void ShowPanel()
     {
-        transform.position = new Vector2(transform.position.x, Mathf.Lerp(transform.position.y, Screen.height / 2, lerpSpeed * Time.deltaTime));
+        transform.position = new Vector2(transform.position.x, Mathf.Lerp(transform.position.y, pointY, lerpSpeed * Time.deltaTime));
     }
 }
