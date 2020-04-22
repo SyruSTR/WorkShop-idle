@@ -18,7 +18,7 @@ public class AllChoppersController : MonoBehaviour
         set
         {
             allgrindresources += value;
-            counterResources.text = allgrindresources.ToString() + " per min";
+            counterResources.text = allgrindresources.ToString() + " per sec";
         }
     }
     void Start()

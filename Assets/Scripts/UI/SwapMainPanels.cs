@@ -8,6 +8,7 @@ public class SwapMainPanels : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
 {
     // Start is called before the first frame update
     private Vector2 startPos;
+    [SerializeField] private float border;
     [SerializeField] private float lerpSpeed = 1f;
     private bool directionChosen;
     [SerializeField] float choosenScreenX = 0f;
@@ -51,7 +52,7 @@ public class SwapMainPanels : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
             touchPos = eventData.delta;
             if (Mathf.Abs(touchPos.x) > Mathf.Abs(touchPos.y))
             {
-                var targetPos = Mathf.Clamp(transform.position.x, choosenScreenX - 3f, choosenScreenX + 3f);
+                var targetPos = Mathf.Clamp(transform.position.x, choosenScreenX - border, choosenScreenX + border);
                 transform.position = new Vector3(Mathf.Lerp(targetPos, transform.position.x + touchPos.x / 5, lerpSpeed * Time.deltaTime), transform.position.y, transform.position.z);
             }
         }
