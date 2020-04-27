@@ -15,6 +15,10 @@ public class MovementPanel : MonoBehaviour
     public void Hide()
     {
         show = false;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
         gameObject.SetActive(false);
     }
     private void Update()

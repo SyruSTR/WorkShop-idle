@@ -63,7 +63,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ScribtableObjects\UpgradeRecipes.cs" />
     <Compile Include="Assets\Scripts\EventSystem\Messenger.cs" />
+    <Compile Include="Assets\Scripts\Game\UpgradeSystem\UI\AddItemsOnBoardForUpdate.cs" />
+    <Compile Include="Assets\Scripts\Game\UpgradeSystem\UnitsSystemUpgrade.cs" />
     <Compile Include="Assets\Scripts\Game\Workers\AllChoppersController.cs" />
     <Compile Include="Assets\Scripts\Game\Workers\UnitGrindController.cs" />
     <Compile Include="Assets\Scripts\Game\Workers\WorkerAnimation.cs" />
@@ -72,7 +75,6 @@
     <Compile Include="Assets\Scripts\SQLite\Query\TestDelete.cs" />
     <Compile Include="Assets\Scripts\SQLite\Query\TestQuery.cs" />
     <Compile Include="Assets\Scripts\SQLite\Query\TestQueryInsert.cs" />
-    <Compile Include="Assets\Scripts\SQLite\SQLiteAndroid.cs" />
     <Compile Include="Assets\Scripts\SQLite\SQLiteBD.cs" />
     <Compile Include="Assets\Scripts\UI\ControllerGeneralPanels.cs" />
     <Compile Include="Assets\Scripts\UI\HudStats\GetStats.cs" />

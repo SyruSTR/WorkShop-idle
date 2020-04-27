@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System.Threading;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,13 +16,16 @@ public class GetStats : MonoBehaviour
     }
     void Start()
     {
-       StartCoroutine(GetStatsInBD());
+        StartCoroutine(GetStatsInBD());
     }
 
     private IEnumerator GetStatsInBD()
     {
+        //      new Thread(new ThreadStart(() =>
+        //           {
         statsText.text = SQLiteBD.ExecuteQueryWithAnswer($"SELECT itemCount FROM PlayersItems WHERE itemId = {itemId} AND playerId = {playerId}");
-        Debug.Log(statsText.text);
+        //           })).Start();
+        //Debug.Log(statsText.text);
         yield return new WaitForSeconds(1.0f);
         StartCoroutine(GetStatsInBD());
 

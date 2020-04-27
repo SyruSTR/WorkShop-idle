@@ -29,6 +29,7 @@ static class SQLiteBD
 #if UNITY_ANDROID
         string filePath = Path.Combine(Application.persistentDataPath, fileName);
         if (!File.Exists(filePath)) UnpackDatabase(filePath);
+        //Debug.Log(filePath);
         return filePath;
 #endif
     }
