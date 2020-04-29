@@ -11,9 +11,11 @@ public class AddItemsOnBoardForUpdate : MonoBehaviour
 {
     [SerializeField] private UpgradeRecipes currentRecipe;
     private void OnEnable()
-    {        
+    {
+        bool allResourcesAvailable = false;
         if (currentRecipe != null)
         {
+            byte countAvailable = 0;
             for (int i = 0; i < currentRecipe.RecipesItemsID.Length; i++)
             {
                 var child = transform.GetChild(i);
@@ -39,20 +41,30 @@ public class AddItemsOnBoardForUpdate : MonoBehaviour
                 int playerCount = int.Parse(SQLiteBD.ExecuteQueryWithAnswer($"SELECT ItemCount FROM PlayersItems WHERE itemId = {currentID} AND playerId = {GameController.PlayerID}"));
                 TextMeshProUGUI childTMP = child.GetChild(1).GetComponent<TextMeshProUGUI>();
 
+                
                 //set text color
                 if (playerCount >= currentRecipe.RecipesCountItems[i])
+                {
+                    Debug.Log($"{gameObject.name} {countAvailable}//{currentRecipe.RecipesItemsID.Length}");
                     childTMP.color = Color.green;
+                    countAvailable++;
+                }
                 else
                     childTMP.color = Color.red;
-                    childTMP.text = $"" +
-                        $"{playerCount}" +
-                        $"/{currentRecipe.RecipesCountItems[i]}";
+                if (countAvailable >= currentRecipe.RecipesItemsID.Length) allResourcesAvailable = true;
+                Debug.Log($"{gameObject.name} {allResourcesAvailable}//{countAvailable}");
+
+                childTMP.text = $"" +
+                    $"{playerCount}" +
+                    $"/{currentRecipe.RecipesCountItems[i]}";
                 child.gameObject.SetActive(true);
             }
         }
         else Debug.LogError("Not have a recipe");
-
-        transform.GetChild(6).GetComponent<Button>().interactable = false;
+        if (allResourcesAvailable)
+            transform.GetChild(6).GetComponent<Button>().interactable = true;
+        else
+            transform.GetChild(6).GetComponent<Button>().interactable = false;
     }
 
     IEnumerator LoadItemIcon(string uri, int childNumber, int currentID)
