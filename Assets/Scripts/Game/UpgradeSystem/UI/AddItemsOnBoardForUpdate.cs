@@ -11,7 +11,7 @@ public class AddItemsOnBoardForUpdate : MonoBehaviour
 {
     [SerializeField] private UpgradeRecipes currentRecipe;
     private void OnEnable()
-    {
+    {        
         if (currentRecipe != null)
         {
             for (int i = 0; i < currentRecipe.RecipesItemsID.Length; i++)
@@ -29,10 +29,7 @@ public class AddItemsOnBoardForUpdate : MonoBehaviour
                     if (file.Name.Contains(SQLiteBD.ExecuteQueryWithAnswer($"SELECT pathToSprite FROM Items WHERE itemID = {currentID}")))
                         StartCoroutine(LoadItemIcon(file, i));
                 }
-#endif
-#if UNITY_STANDALONE
-                                DirectoryInfo directoryInfo = new DirectoryInfo(Application.persistentDataPath);                
-#endif
+#endif           
 #if UNITY_ANDROID
                 //DirectoryInfo direcrotyInfo = new DirectoryInfo(Application.persistentDataPath);
                 //DirectoryInfo direcrotyInfo = new DirectoryInfo()

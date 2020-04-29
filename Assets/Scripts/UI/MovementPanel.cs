@@ -17,7 +17,11 @@ public class MovementPanel : MonoBehaviour
         show = false;
         for (int i = 0; i < transform.childCount; i++)
         {
-            transform.GetChild(i).gameObject.SetActive(false);
+            var gm = transform.GetChild(i);
+            for (int j = 0; j < gm.childCount; j++)
+            {
+                gm.GetChild(j).gameObject.SetActive(false);
+            }
         }
         gameObject.SetActive(false);
     }

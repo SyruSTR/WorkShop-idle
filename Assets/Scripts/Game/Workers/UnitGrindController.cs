@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UnitGrindController : MonoBehaviour
 {
-    private int _grindResourceCount;
+    [SerializeField] private int _grindResourceCount;
     private float _animationSpeed;
 
 
@@ -14,6 +14,7 @@ public class UnitGrindController : MonoBehaviour
     bool _startWork;
     bool _boost;
     [SerializeField] float speedTranzition;
+    [SerializeField] int effectivity = 2;
     WorkerAnimation _workerAnim;
     AllChoppersController _mainChoppersController;
 
@@ -54,7 +55,7 @@ public class UnitGrindController : MonoBehaviour
     }
     private IEnumerator StartStopWorking()
     {
-        SetResourcesCount(2);
+        SetResourcesCount(effectivity);
         _workerAnim.SetSpeedAnimation(_animationSpeed);
         _workerAnim.SetAnimVarible(AnimVarible.AnimatorVarible.animBool, "startWork", true);
         yield return new WaitForSeconds(speedTranzition);
