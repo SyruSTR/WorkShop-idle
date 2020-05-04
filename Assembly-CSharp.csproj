@@ -65,13 +65,17 @@
   <ItemGroup>
     <Compile Include="Assets\ScribtableObjects\UpgradeRecipes.cs" />
     <Compile Include="Assets\Scripts\EventSystem\Messenger.cs" />
+    <Compile Include="Assets\Scripts\Game\UpgradeSystem\AddRecipeOnScript.cs" />
     <Compile Include="Assets\Scripts\Game\UpgradeSystem\UI\AddItemsOnBoardForUpdate.cs" />
     <Compile Include="Assets\Scripts\Game\UpgradeSystem\UnitsSystemUpgrade.cs" />
     <Compile Include="Assets\Scripts\Game\Workers\AllChoppersController.cs" />
     <Compile Include="Assets\Scripts\Game\Workers\UnitGrindController.cs" />
     <Compile Include="Assets\Scripts\Game\Workers\WorkerAnimation.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Scripts\GameControllerMono.cs" />
     <Compile Include="Assets\Scripts\GeneralAnimationScripts\AnimVarible.cs" />
+    <Compile Include="Assets\Scripts\RecipeController.cs" />
+    <Compile Include="Assets\Scripts\SQLite\Query\MinusPlayerResources.cs" />
     <Compile Include="Assets\Scripts\SQLite\Query\TestDelete.cs" />
     <Compile Include="Assets\Scripts\SQLite\Query\TestQuery.cs" />
     <Compile Include="Assets\Scripts\SQLite\Query\TestQueryInsert.cs" />

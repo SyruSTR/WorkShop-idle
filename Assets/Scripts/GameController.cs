@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 static public class GameController
 {
-    static public int PlayerID = 1;
+    static public int PlayerID;
 }
 
 

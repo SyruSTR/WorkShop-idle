@@ -27,16 +27,12 @@ public class SwapMainPanels : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     }
     private void Update()
     {
-        if (Input.GetKey(KeyCode.F))
-        {
-            transform.position = new Vector3(0, 0, 0);
-        }
         if (directionChosen)
         {
             ScreenChosen();
         }
         //textX.text = "X: " + transform.position.x;
-        textXScreen.text = "ActiveScr: " + choosenScreenX.ToString();
+        //textXScreen.text = "ActiveScr: " + choosenScreenX.ToString();
         //Debug.Log(choosenScreenX);
     }
     public void OnBeginDrag(PointerEventData eventData)

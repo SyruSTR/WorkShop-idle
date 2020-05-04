@@ -27,4 +27,8 @@ public class TestQuery : MonoBehaviour
 
         //Debug.Log($"Test Query = {idCountFirstItem}");
     }
+    public void TestPlus()
+    {
+        SQLiteBD.ExecuteQueryWithoutAnswer("UPDATE Players SET sawmillLVL = (sawmillLVL+1) WHERE id = 1");
+    }
 }

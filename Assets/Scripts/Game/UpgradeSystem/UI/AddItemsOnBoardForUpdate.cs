@@ -7,11 +7,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 
+[RequireComponent(typeof(AddRecipeOnScript))]
 public class AddItemsOnBoardForUpdate : MonoBehaviour
 {
-    [SerializeField] private UpgradeRecipes currentRecipe;
+    //[SerializeField] private UpgradeRecipes currentRecipe;
     private void OnEnable()
     {
+        UpgradeRecipes currentRecipe = GetComponent<AddRecipeOnScript>().CurrentRecipe;
         bool allResourcesAvailable = false;
         if (currentRecipe != null)
         {
@@ -40,7 +42,6 @@ public class AddItemsOnBoardForUpdate : MonoBehaviour
 
                 int playerCount = int.Parse(SQLiteBD.ExecuteQueryWithAnswer($"SELECT ItemCount FROM PlayersItems WHERE itemId = {currentID} AND playerId = {GameController.PlayerID}"));
                 TextMeshProUGUI childTMP = child.GetChild(1).GetComponent<TextMeshProUGUI>();
-
                 
                 //set text color
                 if (playerCount >= currentRecipe.RecipesCountItems[i])
