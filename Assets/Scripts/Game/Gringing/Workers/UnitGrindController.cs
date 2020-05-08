@@ -6,15 +6,19 @@ using UnityEngine.UI;
 public class UnitGrindController : MonoBehaviour
 {
     [SerializeField] private int _grindResourceCount;
-    private float _animationSpeed;
+
 
 
     public int GrindResource { get { return _grindResourceCount; } }
 
     bool _startWork;
-    bool _boost;
-    [SerializeField] float speedTranzition;
-    [SerializeField] int effectivity = 2;
+    private bool _boost;
+    [SerializeField] private float _animationSpeed;
+    public float _AnimationSpeed { get { return _animationSpeed; } set { _animationSpeed = value; } }
+    [SerializeField] private float speedTranzition;
+    public float SpeedTranzition { set { speedTranzition = value; } }
+    [SerializeField] private int effectivity = 2;
+    public int Effectivity { get { return effectivity; } set { effectivity = value; } }
     WorkerAnimation _workerAnim;
     AllChoppersController _mainChoppersController;
 
@@ -28,7 +32,7 @@ public class UnitGrindController : MonoBehaviour
     {
         _startWork = false;
         _boost = false;
-        _animationSpeed = 1f;
+        //_animationSpeed = 1f;
     }
 
     private Coroutine speedBoost;
@@ -38,7 +42,7 @@ public class UnitGrindController : MonoBehaviour
         if (!_startWork)
         {
             _startWork = true;
-            
+
             StartCoroutine(StartStopWorking());
         }
         else
@@ -58,7 +62,11 @@ public class UnitGrindController : MonoBehaviour
         SetResourcesCount(effectivity);
         _workerAnim.SetSpeedAnimation(_animationSpeed);
         _workerAnim.SetAnimVarible(AnimVarible.AnimatorVarible.animBool, "startWork", true);
-        yield return new WaitForSeconds(speedTranzition);
+        if (speedTranzition > 1f)
+            yield return new WaitForSeconds(speedTranzition);
+        else
+            //seconds * minutes * hours
+            yield return new WaitForSeconds(60 * 60 * 1);
         if (_boost)
         {
             StopCoroutine(speedBoost);
@@ -66,7 +74,7 @@ public class UnitGrindController : MonoBehaviour
         }
         _workerAnim.SetAnimVarible(AnimVarible.AnimatorVarible.animBool, "startWork", false);
         SetResourcesCount(0);
-        
+
         yield return new WaitForSeconds(1f);
         _startWork = false;
     }
@@ -77,14 +85,14 @@ public class UnitGrindController : MonoBehaviour
         _mainChoppersController.Allgrindresources = _grindResourceCount;
     }
     private IEnumerator SpeedBoost()
-    {        
-            _workerAnim.SetSpeedAnimation(_animationSpeed*2);
-        if(!_boost)
+    {
+        _workerAnim.SetSpeedAnimation(_animationSpeed * 2);
+        if (!_boost)
             SetResourcesCount(_grindResourceCount * 2);
-            _boost = true;
+        _boost = true;
         yield return new WaitForSeconds(1f);
-            _workerAnim.SetSpeedAnimation(_animationSpeed/2);
-            SetResourcesCount(_grindResourceCount / 2);
+        _workerAnim.SetSpeedAnimation(_animationSpeed / 2);
+        SetResourcesCount(_grindResourceCount / 2);
         _boost = false;
     }
 }

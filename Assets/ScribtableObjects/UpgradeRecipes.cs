@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Recipe", menuName = "Recipe", order = 51)]
 public class UpgradeRecipes : ScriptableObject
 {
-    [SerializeField] private Item[] Recipe;
+    [SerializeField] protected Item[] Recipe;
     public int[] RecipesItemsID
     {
         get

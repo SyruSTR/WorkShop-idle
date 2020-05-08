@@ -53,7 +53,7 @@ public class AddItemsOnBoardForUpdate : MonoBehaviour
                 else
                     childTMP.color = Color.red;
                 if (countAvailable >= currentRecipe.RecipesItemsID.Length) allResourcesAvailable = true;
-                Debug.Log($"{gameObject.name} {allResourcesAvailable}//{countAvailable}");
+                //Debug.Log($"{gameObject.name} {allResourcesAvailable}//{countAvailable}");
 
                 childTMP.text = $"" +
                     $"{playerCount}" +

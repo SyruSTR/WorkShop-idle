@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class TestScript : MonoBehaviour
 {
-    public void test1()
+    private void Start()
     {
-        Debug.LogError("GG");
+        Debug.Log(transform.position);
     }
 }

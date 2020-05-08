@@ -5,10 +5,6 @@ using System.Data;
 
 public class TestQuery : MonoBehaviour
 {
-    private void Start()
-    {
-        TestSelect();
-    }
     public void TestSelect()
     {
         DataTable test = SQLiteBD.GetTable("SELECT itemId, nameItem, ItemsType.name FROM Items " +
@@ -30,5 +26,9 @@ public class TestQuery : MonoBehaviour
     public void TestPlus()
     {
         SQLiteBD.ExecuteQueryWithoutAnswer("UPDATE Players SET sawmillLVL = (sawmillLVL+1) WHERE id = 1");
+    }
+    public void Test()
+    {
+        TimeController.SetDateTimeToDBForUnit(System.DateTime.UtcNow);
     }
 }

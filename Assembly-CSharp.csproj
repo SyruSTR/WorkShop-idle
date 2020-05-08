@@ -63,14 +63,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ScribtableObjects\ItemsRecipes.cs" />
     <Compile Include="Assets\ScribtableObjects\UpgradeRecipes.cs" />
     <Compile Include="Assets\Scripts\EventSystem\Messenger.cs" />
-    <Compile Include="Assets\Scripts\Game\UpgradeSystem\AddRecipeOnScript.cs" />
-    <Compile Include="Assets\Scripts\Game\UpgradeSystem\UI\AddItemsOnBoardForUpdate.cs" />
-    <Compile Include="Assets\Scripts\Game\UpgradeSystem\UnitsSystemUpgrade.cs" />
-    <Compile Include="Assets\Scripts\Game\Workers\AllChoppersController.cs" />
-    <Compile Include="Assets\Scripts\Game\Workers\UnitGrindController.cs" />
-    <Compile Include="Assets\Scripts\Game\Workers\WorkerAnimation.cs" />
+    <Compile Include="Assets\Scripts\Game\Gringing\UpgradeSystem\AddRecipeOnScript.cs" />
+    <Compile Include="Assets\Scripts\Game\Gringing\UpgradeSystem\UI\AddItemsOnBoardForUpdate.cs" />
+    <Compile Include="Assets\Scripts\Game\Gringing\UpgradeSystem\UnitsSystemUpgrade.cs" />
+    <Compile Include="Assets\Scripts\Game\Gringing\Workers\AllChoppersController.cs" />
+    <Compile Include="Assets\Scripts\Game\Gringing\Workers\UnitGrindController.cs" />
+    <Compile Include="Assets\Scripts\Game\Gringing\Workers\WorkerAnimation.cs" />
+    <Compile Include="Assets\Scripts\Game\Workshop\AddItemsOnBoard.cs" />
+    <Compile Include="Assets\Scripts\Game\Workshop\ClickToItem.cs" />
+    <Compile Include="Assets\Scripts\Game\Workshop\LoadItem.cs" />
+    <Compile Include="Assets\Scripts\Game\Workshop\TimeToCraft.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\GameControllerMono.cs" />
     <Compile Include="Assets\Scripts\GeneralAnimationScripts\AnimVarible.cs" />
@@ -80,6 +85,7 @@
     <Compile Include="Assets\Scripts\SQLite\Query\TestQuery.cs" />
     <Compile Include="Assets\Scripts\SQLite\Query\TestQueryInsert.cs" />
     <Compile Include="Assets\Scripts\SQLite\SQLiteBD.cs" />
+    <Compile Include="Assets\Scripts\TimeController.cs" />
     <Compile Include="Assets\Scripts\UI\ControllerGeneralPanels.cs" />
     <Compile Include="Assets\Scripts\UI\HudStats\GetStats.cs" />
     <Compile Include="Assets\Scripts\UI\MovementPanel.cs" />
