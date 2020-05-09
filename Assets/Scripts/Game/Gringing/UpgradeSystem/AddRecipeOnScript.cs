@@ -5,27 +5,42 @@ using UnityEngine;
 
 public class AddRecipeOnScript : MonoBehaviour
 {
-    [SerializeField] private UpgradeRecipes currentRecipe;
+    [SerializeField] private UpgradeRecipes currentUpgradeRecipe;
+    [SerializeField] private ItemsRecipes currentItemRecipe;
     [SerializeField] private RecipeController recipreController;
+    
     public RecipeController RecipreController { get { return recipreController; } }
-    public UpgradeRecipes CurrentRecipe { get { return currentRecipe; } set { currentRecipe = value; } }
+    public UpgradeRecipes CurrentUpgradeRecipe { get { return currentUpgradeRecipe; } set { currentUpgradeRecipe = value; } }
+    public ItemsRecipes CurrentItemRecipe { get { return currentItemRecipe; } }
+    
     public void GetRecipe()
     {
-        if (name == "Chopper")
-            currentRecipe = recipreController.LastChopperUpgrade;
-        else if (name == "Miner")
-            currentRecipe = recipreController.LastMinerUpgrade;
+        if (recipreController != null)
+        {
+            if (name == "Chopper")
+                currentUpgradeRecipe = recipreController.LastChopperUpgrade;
+            else if (name == "Miner")
+                currentUpgradeRecipe = recipreController.LastMinerUpgrade;
+        }
+    }
+    public void SetRecipe(ItemsRecipes recipe)
+    {
+        currentItemRecipe = recipe;
     }
     private void OnEnable()
     {
-        if (name == "Chopper")
-            currentRecipe = recipreController.LastChopperUpgrade;
-        else if (name == "Miner")
-            currentRecipe = recipreController.LastMinerUpgrade;
+        if (recipreController != null)
+        {
+            if (name == "Chopper")
+                currentUpgradeRecipe = recipreController.LastChopperUpgrade;
+            else if (name == "Miner")
+                currentUpgradeRecipe = recipreController.LastMinerUpgrade;
+        }
     }
 
     private void OnDisable()
     {
-        currentRecipe = null;
+        currentUpgradeRecipe = null;
+        currentItemRecipe = null;
     }
 }

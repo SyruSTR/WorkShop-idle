@@ -13,7 +13,9 @@ public class AddItemsOnBoardForUpdate : MonoBehaviour
     //[SerializeField] private UpgradeRecipes currentRecipe;
     private void OnEnable()
     {
-        UpgradeRecipes currentRecipe = GetComponent<AddRecipeOnScript>().CurrentRecipe;
+        UpgradeRecipes currentRecipe = GetComponent<AddRecipeOnScript>().CurrentUpgradeRecipe;
+        if (currentRecipe == null)
+            currentRecipe = GetComponent<AddRecipeOnScript>().CurrentItemRecipe;
         bool allResourcesAvailable = false;
         if (currentRecipe != null)
         {

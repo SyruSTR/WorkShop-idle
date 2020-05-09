@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: Rock axe
   m_EditorClassIdentifier: 
   Recipe:
-  - itemId: 0
-    count: 0
+  - itemId: 1
+    count: 10
+  - itemId: 2
+    count: 20
+  - itemId: 3
+    count: 50
   accessLevel: 1
   itemID: 5

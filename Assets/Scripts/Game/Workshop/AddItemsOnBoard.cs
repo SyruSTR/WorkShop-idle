@@ -8,10 +8,22 @@ public class AddItemsOnBoard : MonoBehaviour
 {
     [SerializeField] private ItemsRecipes[] itemsRecipes;
     [SerializeField] private GameObject itemPrefab;
+    [SerializeField] private bool dragActive;
+
+    [Space]
+    [SerializeField] private Transform additionalCanvas;
+    public bool DragActive { get { return dragActive; } set { dragActive = value; } }
+
     private float _deltaX = 1.3f;
     private float _deltaY = 1.3f;
     private Vector3 startPos;
     // Start is called before the first frame update
+
+    public void ItemSelected(ItemsRecipes recipe)
+    {
+        additionalCanvas.GetComponent<ControllerGeneralPanels>().SetActivePanel(3);
+    }
+
     void Start()
     {
         _deltaX = 1.3f;
@@ -36,6 +48,8 @@ public class AddItemsOnBoard : MonoBehaviour
                     Application.streamingAssetsPath + "/ItemsIcons",
                     itemsRecipes[i].ItemID,
                     newItem));
+                newItem.GetComponent<ClickToItem>().recipe = itemsRecipes[i];
+                //newItem.GetComponent<LoadItemRecipeOnBoard>().Recipe = itemsRecipes[i];
                 x++;
                 if (x > 2)
                 {
@@ -47,7 +61,7 @@ public class AddItemsOnBoard : MonoBehaviour
 
         if (y > 3)
         {
-            RectTransform contentRect = GetComponent<RectTransform>();            
+            RectTransform contentRect = GetComponent<RectTransform>();
             contentRect.sizeDelta = new Vector2(contentRect.sizeDelta.x,
                 //distance between 2 item * rows.count * yOffset
                 60 * y + 40);

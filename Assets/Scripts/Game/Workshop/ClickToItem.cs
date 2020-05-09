@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class ClickToItem : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public ItemsRecipes recipe;
+
+    private void OnMouseDown()
     {
-        
+        StartCoroutine(CheckDrag());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private IEnumerator CheckDrag()
+    {        
+        var parentComponent = GetComponentInParent<AddItemsOnBoard>();
+        yield return new WaitForSeconds(0.1f);
+        if (parentComponent.DragActive)
+            yield break;
+        else
+        {
+            var reference = GetComponentInParent<ItemsCraftObjectReference>();
+            reference.CraftPanel.SetRecipe(recipe);
+            reference.AdditionalCanvas.SetActivePanel(3);
+        }
+
     }
 }

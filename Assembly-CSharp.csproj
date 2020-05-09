@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\ItemsCraftObjectReference.cs" />
     <Compile Include="Assets\ScribtableObjects\ItemsRecipes.cs" />
     <Compile Include="Assets\ScribtableObjects\UpgradeRecipes.cs" />
     <Compile Include="Assets\Scripts\EventSystem\Messenger.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Assets\Scripts\Game\Workshop\AddItemsOnBoard.cs" />
     <Compile Include="Assets\Scripts\Game\Workshop\ClickToItem.cs" />
     <Compile Include="Assets\Scripts\Game\Workshop\LoadItem.cs" />
+    <Compile Include="Assets\Scripts\Game\Workshop\LoadItemRecipeOnBoard.cs" />
     <Compile Include="Assets\Scripts\Game\Workshop\TimeToCraft.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\GameControllerMono.cs" />
