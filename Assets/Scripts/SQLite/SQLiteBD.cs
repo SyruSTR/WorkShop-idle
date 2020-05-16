@@ -85,7 +85,8 @@ static class SQLiteBD
         DataSet DS = new DataSet();
         adapter.Fill(DS);
         adapter.Dispose();
-
+        CloseConnection();
         return DS.Tables[0];
+
     }
 }

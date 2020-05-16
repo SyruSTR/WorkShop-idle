@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6511508116288138023}
   - component: {fileID: 6511508116288138042}
   m_Layer: 5
-  m_Name: Chopper 1
+  m_Name: Chopper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90,7 +90,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.38720703, y: -0.000045776367}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -101,7 +101,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 100.12799, y: 99.351364}
+  m_Size: {x: 80, y: 80}
   m_EdgeRadius: 0
 --- !u!95 &6511508116288138020
 Animator:
@@ -146,4 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85ebed9cce321ce4a8db847d144f4782, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _grindResourceCount: 0
+  _animationSpeed: 0
   speedTranzition: 5
+  effectivity: 2

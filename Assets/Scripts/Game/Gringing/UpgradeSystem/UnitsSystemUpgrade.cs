@@ -34,7 +34,8 @@ public class UnitsSystemUpgrade : MonoBehaviour
             }
         }
     }
-    public GameObject UpgradeUnit()
+    private UnitGrindController newUnit;
+    public void UpgradeUnit()
     {
         int childCount = transform.childCount;
         bool firstUnit = true;
@@ -45,9 +46,9 @@ public class UnitsSystemUpgrade : MonoBehaviour
             firstUnit = false;
         }
         else if (isChopper)
-            lastUnitPosition = new Vector3(-12.5f, 1.7f, 10.0f);
+            lastUnitPosition = new Vector3(-6.75f, 1.7f, 10.0f);
         else
-            lastUnitPosition = new Vector3(-10.0f, 1.7f, 10.0f);
+            lastUnitPosition = new Vector3(-4.5f, 1.7f, 10.0f);
         GameObject newUnit = Instantiate(unit, lastUnitPosition, Quaternion.identity, transform);
         RectTransform rectUnit = newUnit.transform as RectTransform;
         if (firstUnit)
@@ -55,11 +56,11 @@ public class UnitsSystemUpgrade : MonoBehaviour
         else
             rectUnit.localPosition = new Vector3(rectUnit.localPosition.x, rectUnit.localPosition.y - 100, rectUnit.localPosition.z);
         newUnit.name = $"{unit.name} {transform.childCount}";
-        return newUnit;
+        this.newUnit = newUnit.GetComponent<UnitGrindController>();
     }
     private void AddUnitInDB(int seconds, float speed, int effectivity)
     {
-        var newUnit = UpgradeUnit().GetComponent<UnitGrindController>();
+        UpgradeUnit();
         newUnit.Effectivity = effectivity;
         newUnit._AnimationSpeed = speed;
         if (seconds > 0)

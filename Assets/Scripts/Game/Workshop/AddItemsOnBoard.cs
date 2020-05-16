@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 
 public class AddItemsOnBoard : MonoBehaviour
@@ -9,6 +10,7 @@ public class AddItemsOnBoard : MonoBehaviour
     [SerializeField] private ItemsRecipes[] itemsRecipes;
     [SerializeField] private GameObject itemPrefab;
     [SerializeField] private bool dragActive;
+    private ScrollRect scrollRect;
 
     [Space]
     [SerializeField] private Transform additionalCanvas;
@@ -16,7 +18,7 @@ public class AddItemsOnBoard : MonoBehaviour
 
     private float _deltaX = 1.3f;
     private float _deltaY = 1.3f;
-    private Vector3 startPos;
+    [SerializeField] private Vector2 startPos;
     // Start is called before the first frame update
 
     public void ItemSelected(ItemsRecipes recipe)
@@ -28,7 +30,6 @@ public class AddItemsOnBoard : MonoBehaviour
     {
         _deltaX = 1.3f;
         _deltaY = -1.3f;
-        startPos = new Vector2(-3.5f, -4.8f);
         int workshopLVL = int.Parse(SQLiteBD.ExecuteQueryWithAnswer($"SELECT workshopLVL FROM players WHERE selectedPlayer = 1"));
 
         int x = 0;
