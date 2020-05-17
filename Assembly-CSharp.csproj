@@ -74,10 +74,13 @@
     <Compile Include="Assets\Scripts\Game\Gringing\Workers\UnitGrindController.cs" />
     <Compile Include="Assets\Scripts\Game\Gringing\Workers\WorkerAnimation.cs" />
     <Compile Include="Assets\Scripts\Game\Workshop\AddItemsOnBoard.cs" />
+    <Compile Include="Assets\Scripts\Game\Workshop\AddNewItemInDB.cs" />
     <Compile Include="Assets\Scripts\Game\Workshop\ClickToItem.cs" />
+    <Compile Include="Assets\Scripts\Game\Workshop\CraftItemInfo.cs" />
     <Compile Include="Assets\Scripts\Game\Workshop\CreateItem.cs" />
     <Compile Include="Assets\Scripts\Game\Workshop\LoadItem.cs" />
     <Compile Include="Assets\Scripts\Game\Workshop\LoadItemRecipeOnBoard.cs" />
+    <Compile Include="Assets\Scripts\Game\Workshop\TakeItem.cs" />
     <Compile Include="Assets\Scripts\Game\Workshop\TimeToCraft.cs" />
     <Compile Include="Assets\Scripts\Game\Workshop\UI\ScrollRectDragFunction.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />

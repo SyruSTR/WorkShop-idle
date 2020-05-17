@@ -45,8 +45,7 @@ public class AddItemsOnBoard : MonoBehaviour
                     Quaternion.identity,
                     transform);
                 newItem.name = $"{itemPrefab.name} {transform.childCount}";
-                StartCoroutine(GetComponent<LoadItem>().LoadIemIconFromWorkshop(
-                    Application.streamingAssetsPath + "/ItemsIcons",
+                StartCoroutine(GetComponent<LoadItem>().LoadIemIconFromWorkshop(                    
                     itemsRecipes[i].ItemID,
                     newItem));
                 newItem.GetComponent<ClickToItem>().recipe = itemsRecipes[i];

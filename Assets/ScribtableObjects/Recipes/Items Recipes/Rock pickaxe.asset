@@ -21,3 +21,4 @@ MonoBehaviour:
     count: 30
   accessLevel: 1
   itemID: 4
+  secondToCraft: 30

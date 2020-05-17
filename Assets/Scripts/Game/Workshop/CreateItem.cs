@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 
 public class CreateItem : MonoBehaviour
@@ -14,36 +16,55 @@ public class CreateItem : MonoBehaviour
     private void Awake()
     {
         loadItemScript = GetComponent<LoadItem>();
-
     }
+
     private void Start()
     {
-        CreateItemFunction(0);
-    }
+        var data = SQLiteBD.GetTable($"SELECT itemID,TimeToCraft,craftID FROM CraftItems WHERE playerID = {GameController.PlayerID}");
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
+        for (int i = 0; i < data.Rows.Count; i++)
         {
-            CreateItemFunction(0);
+            var gg = DateTime.UtcNow.AddHours(8);
+            var wp = DateTime.ParseExact(data.Rows[i][1].ToString(), "u", CultureInfo.InvariantCulture);
+            TimeSpan craftTime = DateTime.Parse(data.Rows[i][1].ToString()) - DateTime.UtcNow.AddHours(8);
+            if (craftTime.TotalSeconds <= 0) craftTime = new TimeSpan(0, 0, 0);
+            CreateItemFunction(
+                int.Parse(data.Rows[i][0].ToString()),
+                int.Parse(data.Rows[i][2].ToString()),
+                craftTime);
         }
     }
 
-    public void CreateItemFunction(int itemID)
+    public void CreateItemFunction(int itemID,int craftID, TimeSpan timeToCraft)
     {
         this.itemID = itemID;
         int childCount = transform.childCount;
-        Debug.Log(startPos.x + _xOffset * childCount);
+        GameObject newItem = null;
+
         if (childCount < 1)
-            Instantiate(itemPrefab, startPos, Quaternion.identity, transform);
+            newItem = Instantiate(itemPrefab, startPos, Quaternion.identity, transform);
         else
-            Instantiate(itemPrefab, new Vector2(transform.GetChild(childCount-1).transform.position.x + _xOffset,
+            newItem = Instantiate(itemPrefab, new Vector2(transform.GetChild(childCount - 1).transform.position.x + _xOffset,
                 startPos.y + _yOffset * childCount),
                 Quaternion.identity, transform);
+        newItem.SetActive(false);
+
+        newItem.name = $"{itemPrefab.name} {childCount + 1}";
+        StartCoroutine(loadItemScript.LoadIemIconFromWorkshop(this.itemID, newItem));
+        newItem.SetActive(true);
+
+        var craftInfo = newItem.GetComponent<CraftItemInfo>();
+
+        craftInfo.CraftID = craftID;
+        craftInfo.ItemID = itemID;
+
+        var itemTime = newItem.GetComponent<TimeToCraft>();
+        if (itemTime != null)
+            itemTime.SetTime(timeToCraft);
         if (childCount >= 3)
         {
             RectTransform contentRect = GetComponent<RectTransform>();
-            contentRect.sizeDelta = new Vector2(85 * (childCount-2),
+            contentRect.sizeDelta = new Vector2(85 * (childCount - 2),
                 //distance between 2 item * rows.count * yOffset
                 contentRect.sizeDelta.y);
         }
