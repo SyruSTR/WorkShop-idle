@@ -12871,22 +12871,6 @@ MonoBehaviour:
   itemsRecipes:
   - {fileID: 11400000, guid: 817f17d467cd2d241a2a6f98a277f63e, type: 2}
   - {fileID: 11400000, guid: e2d5fb5d1901f9a4fbb8ff0d388a6ca8, type: 2}
-  - {fileID: 11400000, guid: 817f17d467cd2d241a2a6f98a277f63e, type: 2}
-  - {fileID: 11400000, guid: e2d5fb5d1901f9a4fbb8ff0d388a6ca8, type: 2}
-  - {fileID: 11400000, guid: 817f17d467cd2d241a2a6f98a277f63e, type: 2}
-  - {fileID: 11400000, guid: e2d5fb5d1901f9a4fbb8ff0d388a6ca8, type: 2}
-  - {fileID: 11400000, guid: 817f17d467cd2d241a2a6f98a277f63e, type: 2}
-  - {fileID: 11400000, guid: e2d5fb5d1901f9a4fbb8ff0d388a6ca8, type: 2}
-  - {fileID: 11400000, guid: 817f17d467cd2d241a2a6f98a277f63e, type: 2}
-  - {fileID: 11400000, guid: e2d5fb5d1901f9a4fbb8ff0d388a6ca8, type: 2}
-  - {fileID: 11400000, guid: 817f17d467cd2d241a2a6f98a277f63e, type: 2}
-  - {fileID: 11400000, guid: e2d5fb5d1901f9a4fbb8ff0d388a6ca8, type: 2}
-  - {fileID: 11400000, guid: 817f17d467cd2d241a2a6f98a277f63e, type: 2}
-  - {fileID: 11400000, guid: e2d5fb5d1901f9a4fbb8ff0d388a6ca8, type: 2}
-  - {fileID: 11400000, guid: 817f17d467cd2d241a2a6f98a277f63e, type: 2}
-  - {fileID: 11400000, guid: e2d5fb5d1901f9a4fbb8ff0d388a6ca8, type: 2}
-  - {fileID: 11400000, guid: 817f17d467cd2d241a2a6f98a277f63e, type: 2}
-  - {fileID: 11400000, guid: e2d5fb5d1901f9a4fbb8ff0d388a6ca8, type: 2}
   itemPrefab: {fileID: 2228142155398911852, guid: fb5fccf482ebda04aa6981d125e305a9,
     type: 3}
   dragActive: 0

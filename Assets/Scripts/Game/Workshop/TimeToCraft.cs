@@ -34,7 +34,6 @@ public class TimeToCraft : MonoBehaviour
             yield return new WaitForSeconds(1);
             timeToCraft -= TimeSpan.FromSeconds(1);
             timeText.text = timeToCraft.ToString(@"hh\:mm\:ss");
-            if (timeToCraft.TotalSeconds >= 0)
                 StartCoroutine(CountDown());
         }
         else
