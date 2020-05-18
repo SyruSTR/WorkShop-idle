@@ -34,7 +34,7 @@ public class TimeToCraft : MonoBehaviour
             yield return new WaitForSeconds(1);
             timeToCraft -= TimeSpan.FromSeconds(1);
             timeText.text = timeToCraft.ToString(@"hh\:mm\:ss");
-                StartCoroutine(CountDown());
+            StartCoroutine(CountDown());
         }
         else
         {
@@ -43,6 +43,6 @@ public class TimeToCraft : MonoBehaviour
             collider.size = new Vector2(50, 50);
             gameObject.AddComponent<TakeItem>();
         }
-        
+
     }
 }

@@ -19,9 +19,13 @@ public class SwapMainPanels : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     private Vector2 touchPos;
     private bool freezeSwap;
     public bool FreezeSwap { set { freezeSwap = value; } }
-    void Start()
+    private void Awake()
     {
         activeScreen = 0;
+        GameController.activeSceen = activeScreen;
+    }
+    void Start()
+    {
         directionChosen = true;
         Screen.orientation = ScreenOrientation.Portrait;
     }
@@ -76,6 +80,7 @@ public class SwapMainPanels : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
                 ActivateDeactivateSwapUpDown(true);
             }
         }
+        GameController.activeSceen = activeScreen;
         directionChosen = true;
     }
     private void ActivateDeactivateSwapUpDown(bool enabled)
@@ -93,7 +98,8 @@ public class SwapMainPanels : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     }
     private void ScreenChosen()
     {
-        transform.position = new Vector3(Mathf.Lerp(transform.position.x, choosenScreenX, lerpSpeed * 3 * Time.deltaTime), transform.position.y, transform.position.z);
+        if (!Mathf.Approximately(transform.position.x, choosenScreenX))
+            transform.position = new Vector3(Mathf.Lerp(transform.position.x, choosenScreenX, lerpSpeed * 3 * Time.deltaTime), transform.position.y, transform.position.z);
     }
     public void ButtonChosenScreen(int screenNumber)
     {
@@ -102,7 +108,7 @@ public class SwapMainPanels : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
             ActivateDeactivateSwapUpDown(false);
             activeScreen = screenNumber;
             choosenScreenX = deltaX * activeScreen * -1;
-            freezeSwap = false;            
+            freezeSwap = false;
             ActivateDeactivateSwapUpDown(true);
         }
     }

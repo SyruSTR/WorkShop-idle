@@ -24,8 +24,6 @@ public class CreateItem : MonoBehaviour
 
         for (int i = 0; i < data.Rows.Count; i++)
         {
-            var gg = DateTime.UtcNow.AddHours(8);
-            var wp = DateTime.ParseExact(data.Rows[i][1].ToString(), "u", CultureInfo.InvariantCulture);
             TimeSpan craftTime = DateTime.Parse(data.Rows[i][1].ToString()) - DateTime.UtcNow.AddHours(8);
             if (craftTime.TotalSeconds <= 0) craftTime = new TimeSpan(0, 0, 0);
             CreateItemFunction(
@@ -40,9 +38,14 @@ public class CreateItem : MonoBehaviour
         this.itemID = itemID;
         int childCount = transform.childCount;
         GameObject newItem = null;
-
+        if (GameController.activeSceen == 1)
+        {
+            startPos.x -= 5.6f;
+        }
         if (childCount < 1)
+        {            
             newItem = Instantiate(itemPrefab, startPos, Quaternion.identity, transform);
+        }
         else
             newItem = Instantiate(itemPrefab, new Vector2(transform.GetChild(childCount - 1).transform.position.x + _xOffset,
                 startPos.y + _yOffset * childCount),
@@ -68,5 +71,4 @@ public class CreateItem : MonoBehaviour
                 //distance between 2 item * rows.count * yOffset
                 contentRect.sizeDelta.y);
         }
-    }
-}
+    }}

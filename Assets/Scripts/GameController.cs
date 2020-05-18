@@ -6,6 +6,7 @@ using UnityEngine.UI;
 static public class GameController
 {
     static public int PlayerID;
+    static public int activeSceen;
 }
 
 
