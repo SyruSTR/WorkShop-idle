@@ -7,6 +7,6 @@ public class TestScript : MonoBehaviour
 {
     private void Start()
     {
-        Debug.Log(transform.position);
+
     }
 }

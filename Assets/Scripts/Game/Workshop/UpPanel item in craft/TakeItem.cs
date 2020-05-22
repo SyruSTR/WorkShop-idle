@@ -18,7 +18,7 @@ public class TakeItem : MonoBehaviour
         }
 
         SQLiteBD.ExecuteQueryWithoutAnswer($"DELETE FROM CraftItems WHERE craftID = {craftItemInfo.CraftID}");
-
+        GetComponentInParent<CreateItem>().ItemUpdate();
         Destroy(gameObject);
     }
 }

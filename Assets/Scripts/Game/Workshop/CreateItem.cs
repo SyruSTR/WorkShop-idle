@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CreateItem : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class CreateItem : MonoBehaviour
     [SerializeField] Vector2 startPos;
     [SerializeField] private float _xOffset;
     [SerializeField] private float _yOffset;
+    public UnityEvent InventoryUpdate;
 
     private void Awake()
     {
@@ -33,7 +35,13 @@ public class CreateItem : MonoBehaviour
         }
     }
 
-    public void CreateItemFunction(int itemID,int craftID, TimeSpan timeToCraft)
+    public void ItemUpdate()
+    {
+        Debug.Log("ItemTake");
+        InventoryUpdate.Invoke();
+    }
+
+    public void CreateItemFunction(int itemID, int craftID, TimeSpan timeToCraft)
     {
         this.itemID = itemID;
         int childCount = transform.childCount;
@@ -43,7 +51,7 @@ public class CreateItem : MonoBehaviour
             startPos.x -= 5.6f;
         }
         if (childCount < 1)
-        {            
+        {
             newItem = Instantiate(itemPrefab, startPos, Quaternion.identity, transform);
         }
         else
@@ -71,4 +79,5 @@ public class CreateItem : MonoBehaviour
                 //distance between 2 item * rows.count * yOffset
                 contentRect.sizeDelta.y);
         }
-    }}
+    }
+}

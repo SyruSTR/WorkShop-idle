@@ -352,6 +352,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89e69f703c574e34bb4004ffffd2d3e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InventoryUpdate:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &525823151627912390
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 public class MinusPlayerResources : MonoBehaviour
 {
     private AddRecipeOnScript recipe;
+    private Order order;
     public void _MinusPlayerResources(bool isSawmill)
     {
         recipe = GetComponent<AddRecipeOnScript>();
@@ -30,7 +31,35 @@ public class MinusPlayerResources : MonoBehaviour
             MinusResources();
         }
     }
+    public void _MinusPlayerResourcesWithOrder()
+    {
+        order = GetComponent<AddOrderOnPanel>().SelectedOrder;
+        if (order.items.Count > 0)
+        {
+            MinusResourcesFromOrder();
+        }
+    }
 
+    private void MinusResourcesFromOrder()
+    {
+        for (int i = 0; i < order.items.Count + 1; i++)
+        {
+            int itemId = 0;
+            string recousrcesCount = "";
+            if (i == order.items.Count)
+            {
+                itemId = 1;
+                recousrcesCount = $"+{order.orderCost}";
+            }
+            else
+            {
+                itemId = order.items[i].itemId;
+                recousrcesCount = $"-{order.items[i].count}";
+            }
+
+            SQLiteBD.ExecuteQueryWithoutAnswer($"UPDATE PlayersItems SET itemCount = (itemCount{recousrcesCount}) WHERE playerID = {GameController.PlayerID} AND itemId = {itemId}");
+        }
+    }
     private void MinusResources()
     {
         int count = 0;

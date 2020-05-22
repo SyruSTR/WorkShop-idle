@@ -73,6 +73,10 @@
     <Compile Include="Assets\Scripts\Game\Gringing\Workers\AllChoppersController.cs" />
     <Compile Include="Assets\Scripts\Game\Gringing\Workers\UnitGrindController.cs" />
     <Compile Include="Assets\Scripts\Game\Gringing\Workers\WorkerAnimation.cs" />
+    <Compile Include="Assets\Scripts\Game\Inventory\AddItemInInventoryPanel.cs" />
+    <Compile Include="Assets\Scripts\Game\Orders\AddOrderOnPanel.cs" />
+    <Compile Include="Assets\Scripts\Game\Orders\SetActiveOrder.cs" />
+    <Compile Include="Assets\Scripts\Game\Orders\ShowOrder.cs" />
     <Compile Include="Assets\Scripts\Game\Workshop\AddItemsOnBoard.cs" />
     <Compile Include="Assets\Scripts\Game\Workshop\CreateItem.cs" />
     <Compile Include="Assets\Scripts\Game\Workshop\LoadItem.cs" />
@@ -86,6 +90,7 @@
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\GameControllerMono.cs" />
     <Compile Include="Assets\Scripts\GeneralAnimationScripts\AnimVarible.cs" />
+    <Compile Include="Assets\Scripts\OrdersController.cs" />
     <Compile Include="Assets\Scripts\RecipeController.cs" />
     <Compile Include="Assets\Scripts\SQLite\Query\MinusPlayerResources.cs" />
     <Compile Include="Assets\Scripts\SQLite\Query\TestDelete.cs" />
