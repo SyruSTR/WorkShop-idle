@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
@@ -9,6 +10,9 @@ public class UnitsSystemUpgrade : MonoBehaviour
     //Unit prefab
     [SerializeField] private GameObject unit;
     [SerializeField] private bool isChopper;
+    private int maxUnitID;
+    
+    
     private void Start()
     {
         string unitType = "";
@@ -17,25 +21,28 @@ public class UnitsSystemUpgrade : MonoBehaviour
         else
             unitType = "2";
         DataTable data =
-            SQLiteBD.GetTable($"SELECT TimeToEnd,speed,effectivity FROM Units WHERE playerId = {GameController.PlayerID} AND unitType = {unitType} ORDER BY unitID");
+            SQLiteBD.GetTable($"SELECT TimeToEnd,speed,effectivity,unitID FROM Units WHERE playerId = {GameController.PlayerID} AND unitType = {unitType} ORDER BY unitID");
+        maxUnitID = int.Parse(SQLiteBD.ExecuteQueryWithAnswer($"SELECT MAX(unitID) FROM Units")) + 1;
         if (data.Rows.Count > 0)
         {
             for (int i = 0; i < data.Rows.Count; i++)
             {
                 TimeSpan second;
-                if (System.DateTime.Parse(data.Rows[i][0].ToString()) > System.DateTime.UtcNow)
-                    second = System.DateTime.Parse(data.Rows[i][0].ToString()) - System.DateTime.UtcNow;
-                else second = new TimeSpan(0, 0, 0);
-                AddUnitInDB(second.Seconds, //seconds
+                DateTime unitTime = DateTime.ParseExact(data.Rows[i][0].ToString(), "u", CultureInfo.InvariantCulture).AddHours(2);
+                if (unitTime > DateTime.UtcNow)
+                    second = unitTime - System.DateTime.UtcNow;
+                else second = TimeSpan.Zero;
+                AddUnitInDB(Mathf.RoundToInt(float.Parse(second.TotalSeconds.ToString())), //seconds
                     float.Parse(data.Rows[i][1].ToString()), // speed
-                    int.Parse(data.Rows[i][2].ToString()) // effectivity
+                    int.Parse(data.Rows[i][2].ToString()), // effectivity
+                    int.Parse(data.Rows[i][3].ToString())
                     );
 
             }
         }
     }
     private UnitGrindController newUnit;
-    public void UpgradeUnit()
+    private void AddUnitOnBoard()
     {
         int childCount = transform.childCount;
         bool firstUnit = true;
@@ -58,11 +65,23 @@ public class UnitsSystemUpgrade : MonoBehaviour
         newUnit.name = $"{unit.name} {transform.childCount}";
         this.newUnit = newUnit.GetComponent<UnitGrindController>();
     }
-    private void AddUnitInDB(int seconds, float speed, int effectivity)
+    public void UpgradeUnit()
     {
-        UpgradeUnit();
+        string unitType = "";
+        if (isChopper)
+            unitType = "1";
+        else
+            unitType = "2";
+        SQLiteBD.ExecuteQueryWithoutAnswer($"INSERT INTO Units (UnitID,UnitType,playerId) VALUES ({maxUnitID},{unitType},{GameController.PlayerID})");
+        AddUnitInDB(0, 1.0f, 4, maxUnitID);
+        maxUnitID++;
+    }
+    private void AddUnitInDB(int seconds, float speed, int effectivity, int unitID)
+    {
+        AddUnitOnBoard();
         newUnit.Effectivity = effectivity;
         newUnit._AnimationSpeed = speed;
+        newUnit.unitID = unitID;
         if (seconds > 0)
             newUnit.SpeedTranzition = seconds;
         else newUnit.SpeedTranzition = 0;

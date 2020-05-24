@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UnitGrindController : MonoBehaviour
 {
     [SerializeField] private int _grindResourceCount;
+    public int unitID;
 
 
 
@@ -16,7 +17,18 @@ public class UnitGrindController : MonoBehaviour
     [SerializeField] private float _animationSpeed;
     public float _AnimationSpeed { get { return _animationSpeed; } set { _animationSpeed = value; } }
     [SerializeField] private float speedTranzition;
-    public float SpeedTranzition { set { speedTranzition = value; } }
+    public float SpeedTranzition
+    {
+        set
+        {
+            speedTranzition = value;
+            if (speedTranzition > 0)
+            {
+                _startWork = true;
+                StartCoroutine(StartStopWorking());
+            }
+        }
+    }
     [SerializeField] private int effectivity = 2;
     public int Effectivity { get { return effectivity; } set { effectivity = value; } }
     WorkerAnimation _workerAnim;
@@ -32,6 +44,8 @@ public class UnitGrindController : MonoBehaviour
     {
         _startWork = false;
         _boost = false;
+
+
         //_animationSpeed = 1f;
     }
 
@@ -42,7 +56,7 @@ public class UnitGrindController : MonoBehaviour
         if (!_startWork)
         {
             _startWork = true;
-
+            SQLiteBD.ExecuteQueryWithoutAnswer($"UPDATE Units SET timeToEnd = '{System.DateTime.UtcNow.ToString("u")}' WHERE unitID = {unitID}");
             StartCoroutine(StartStopWorking());
         }
         else
