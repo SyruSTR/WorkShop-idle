@@ -22,16 +22,19 @@ public class ControllerGeneralPanels : MonoBehaviour
         cashActivePanel.Show();
     }
     public void HideActivePanel()
-    {        
+    {
         if (cashActivePanel != null)
         {
-            cashActivePanel.transform.position = new Vector2(0.0f,-10.0f);
+            Debug.Log("Hide Active Panel");
+            cashActivePanel.transform.position = new Vector2(0.0f, -10.0f);
             cashActivePanel.Hide();
             cashActivePanel = null;
             _activePanel = Panels.None;
 
             transform.GetChild(0).gameObject.SetActive(false);
         }
+        else
+            Debug.LogError("Script 'Hide active error' not activate");
     }
 
     public void SetActivePanel(int panel)

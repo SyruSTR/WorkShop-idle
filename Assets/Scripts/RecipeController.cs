@@ -13,8 +13,7 @@ public class RecipeController : MonoBehaviour
 
     private void Start()
     {
-        UpdateLVL();
-        
+        UpdateLVL();        
     }
     public void UpdateLVL()
     {

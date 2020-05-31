@@ -52,7 +52,6 @@ public class UnitGrindController : MonoBehaviour
     private Coroutine speedBoost;
     private void OnMouseDown()
     {
-        //Debug.Log("ggwp");
         if (!_startWork)
         {
             _startWork = true;

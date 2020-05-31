@@ -10,7 +10,8 @@ public class LoadItem : MonoBehaviour
     {
         if (itemID > 0 && go != null)
         {
-            using (UnityWebRequest webRequest = UnityWebRequestTexture.GetTexture($"{Application.streamingAssetsPath + "/ItemsIcons"}/{SQLiteBD.ExecuteQueryWithAnswer($"SELECT pathToSprite FROM Items WHERE itemID = {itemID}")}"))
+            using (UnityWebRequest webRequest = UnityWebRequestTexture.GetTexture($"{Application.streamingAssetsPath + "/ItemsIcons"}" +
+                $"/{SQLiteBD.ExecuteQueryWithAnswer($"SELECT pathToSprite FROM Items WHERE itemID = {itemID}")}"))
             {
                 yield return webRequest.SendWebRequest();
 

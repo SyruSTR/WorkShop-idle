@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 public class OrdersController : MonoBehaviour
 {
     [SerializeField] private GameObject orderPanel;
-    public Order order;
+    public Order cashOrder;
     private DataTable data;
     private int[] itemsIDArray;
     private List<int> itemsIDList = new List<int>();
@@ -44,20 +44,22 @@ public class OrdersController : MonoBehaviour
     }
     private void GenerateOrders()
     {
+        //взять текущие заказы из базы данных
         data = SQLiteBD.GetTable($"SELECT TextOrder,orderID,TimeTonewOrder FROM orders WHERE playerID = {GameController.PlayerID}");
 
         for (int i = 0; i < data.Rows.Count; i++)
         {
-            order = new Order();
-            order.items = new List<Item>();
+            cashOrder = new Order();
+            cashOrder.items = new List<Item>();
             string JSON = data.Rows[i][0].ToString();
             if (JSON == "")
             {
+                // кеширование текущих предметов
                 if (itemsIDArray == null)
                 {
                     var itemData = SQLiteBD.GetTable("SELECT itemID FROM Items WHERE Itemtype NOT IN (4)");
                     itemsIDArray = new int[itemData.Rows.Count];
-                    for (int j = 0; j < itemsIDArray.Length; j++)
+                    for (int j = 0; j < itemData.Rows.Count; j++)
                     {
                         itemsIDArray[j] = int.Parse(itemData.Rows[j][0].ToString());
                     }
@@ -68,32 +70,33 @@ public class OrdersController : MonoBehaviour
                     itemsIDList.Add(item);
                 }
 
+                //поставить новому заказу случайную длину от 1 до 4
                 int orderLeght = Random.Range(1, 5);
 
                 for (int j = 0; j < orderLeght; j++)
                 {
+                    //выбор случайного предмета
                     int itemID = itemsIDList[Random.Range(0, itemsIDList.Count)];
+                    //удаление предмета из кеширивания
                     itemsIDList.Remove(itemID);
-                    order.items.Add(new Item
+                    cashOrder.items.Add(new Item
                     {
                         itemId = itemID,
                         count = Random.Range(1, 4)
                     });
-                    Debug.Log($"ItemID: {order.items[j].itemId} count: {order.items[j].count}");
+                    Debug.Log($"ItemID: {cashOrder.items[j].itemId} count: {cashOrder.items[j].count}");
                 }
                 itemsIDList.Clear();
-                order.orderCost = order.CalculatinTheOrderCost(order);
+                cashOrder.orderCost = cashOrder.CalculatinTheOrderCost(cashOrder);
 
-                SQLiteBD.ExecuteQueryWithoutAnswer($"UPDATE orders SET textOrder = '{JsonUtility.ToJson(order)}' WHERE orderID = {i + 1}");
-                //var testOrder = JsonUtility.FromJson<Order>(JSONTest);
-
+                SQLiteBD.ExecuteQueryWithoutAnswer($"UPDATE orders SET textOrder = '{JsonUtility.ToJson(cashOrder)}' WHERE orderID = {i + 1}");
             }
             else
-            {
-                order = JsonUtility.FromJson<Order>(JSON);
+            {                
+                cashOrder = JsonUtility.FromJson<Order>(JSON);
             }
             var child = transform.GetChild(i).GetComponent<SetActiveOrder>();
-            child.order = order;
+            child.order = cashOrder;
             child.orderID = int.Parse(data.Rows[i][1].ToString());
 
             string timeToNewOrder = data.Rows[i][2].ToString();
