@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class GetStats : MonoBehaviour
 {
     [SerializeField] int itemId;
-    [SerializeField] int playerId;
     private Text statsText;
     // Start is called before the first frame update
     private void Awake()
@@ -23,7 +22,7 @@ public class GetStats : MonoBehaviour
     {
         //      new Thread(new ThreadStart(() =>
         //           {
-        statsText.text = SQLiteBD.ExecuteQueryWithAnswer($"SELECT itemCount FROM PlayersItems WHERE itemId = {itemId} AND playerId = {playerId}");
+        statsText.text = SQLiteBD.ExecuteQueryWithAnswer($"SELECT itemCount FROM PlayersItems WHERE itemId = {itemId} AND playerId = {GameController.PlayerID}");
         //           })).Start();
         //Debug.Log(statsText.text);
         yield return new WaitForSeconds(1.0f);

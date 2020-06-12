@@ -31,6 +31,23 @@ public class SwapMainPanels : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     }
     private void Update()
     {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            switch (touch.phase)
+            {
+                case TouchPhase.Began:
+                    Debug.Log("Began move");
+                    break;
+                case TouchPhase.Moved:
+                    Debug.Log("Drag move");
+                    break;
+                case TouchPhase.Ended:
+                    Debug.Log("End move");
+                    break;
+            }
+        }
         if (directionChosen)
         {
             ScreenChosen();
@@ -46,7 +63,6 @@ public class SwapMainPanels : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     }
     public void OnDrag(PointerEventData eventData)
     {
-
         if (!freezeSwap)
         {
             touchPos = eventData.delta;

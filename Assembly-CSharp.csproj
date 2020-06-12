@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\API\TestAPI\CheckAuth.cs" />
     <Compile Include="Assets\Scripts\API\TestAPI\TestAPI.cs" />
     <Compile Include="Assets\Scripts\AllChoppersController.cs" />
+    <Compile Include="Assets\Scripts\Dispatcher.cs" />
     <Compile Include="Assets\Scripts\EventSystem\Messenger.cs" />
     <Compile Include="Assets\Scripts\Game\2Gringing\UpgradeSystem\AddRecipeOnScript.cs" />
     <Compile Include="Assets\Scripts\Game\2Gringing\UpgradeSystem\UI\AddItemsOnBoardForUpdate.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Assets\Scripts\Game\4Workshop\UpPanel item in craft\TakeItem.cs" />
     <Compile Include="Assets\Scripts\Game\4Workshop\UpPanel item in craft\TimeToCraft.cs" />
     <Compile Include="Assets\Scripts\Game\5Market\AddMarketItems.cs" />
+    <Compile Include="Assets\Scripts\Game\5Market\MarketItemInfo.cs" />
     <Compile Include="Assets\Scripts\Game\5Market\OpenMarket.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\GameControllerMono.cs" />

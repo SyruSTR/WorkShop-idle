@@ -45,19 +45,14 @@ public class CreateItem : MonoBehaviour
     {
         this.itemID = itemID;
         int childCount = transform.childCount;
-        GameObject newItem = null;
-        if (GameController.activeSceen == 1)
-        {
-            startPos.x -= 5.6f;
-        }
-        if (childCount < 1)
-        {
-            newItem = Instantiate(itemPrefab, startPos, Quaternion.identity, transform);
-        }
-        else
-            newItem = Instantiate(itemPrefab, new Vector2(transform.GetChild(childCount - 1).transform.position.x + _xOffset,
-                startPos.y + _yOffset * childCount),
-                Quaternion.identity, transform);
+        var newItem = Instantiate(
+            itemPrefab,
+            new Vector3(
+                transform.position.x + startPos.x + _xOffset * childCount,
+                transform.position.y + startPos.y,
+                0),
+            Quaternion.identity,
+            transform);
         newItem.SetActive(false);
 
         newItem.name = $"{itemPrefab.name} {childCount + 1}";
